@@ -1,0 +1,160 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>무조건 반사 vs 의식적 반응 (중3 수준)</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; background:#f7f9fc; color:#222; padding:20px; }
+    h1 { text-align:center; }
+    .container { display:flex; gap:20px; justify-content:center; align-items:flex-start; flex-wrap:wrap; }
+    .card { background:white; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.08); padding:16px; width:540px; }
+    svg { width:100%; height:300px; display:block; }
+    .label { font-size:16px; font-weight:600; }
+    .desc { font-size:14px; color:#444; margin-top:8px; }
+    .btns { text-align:center; margin-top:12px; }
+    button { background:#2b7cff; color:white; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; margin:6px; }
+    button.secondary { background:#6c757d; }
+    /* animation highlight */
+    .glow { filter: drop-shadow(0 0 8px rgba(43,124,255,0.7)); stroke-width:4px; }
+    .hidden { opacity:0.15; }
+    footer { text-align:center; margin-top:18px; color:#666; font-size:13px; }
+  </style>
+</head>
+<body>
+  <h1>무조건 반사 vs 의식적 반응 (중학교 3학년 수준)</h1>
+  <p style="text-align:center; max-width:900px; margin:0 auto 12px;">
+    왼쪽은 빠른 <strong>무조건 반사</strong> 경로(척수만 통과), 오른쪽은 느린 <strong>의식적 반응</strong> 경로(대뇌를 거침)를 보여줍니다.<br>
+    "시작"을 누르면 화살표가 차례로 빛나며 진행 과정을 애니메이션으로 볼 수 있어요.
+  </p>
+
+  <div class="container">
+    <!-- Reflex card -->
+    <div class="card" id="reflexCard">
+      <div class="label">무조건 반사 경로 (빠름)</div>
+      <svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" id="reflexSVG" >
+        <!-- elements -->
+        <rect x="60" y="140" width="180" height="80" rx="10" fill="#fff6e6" stroke="#d9b86a" id="r_stim_box"/>
+        <text x="150" y="190" text-anchor="middle" font-size="28">자극🔥</text>
+
+        <rect x="300" y="140" width="220" height="80" rx="10" fill="#eef9ff" stroke="#89b6e6" id="r_sens_box"/>
+        <text x="410" y="190" text-anchor="middle" font-size="22">감각신경</text>
+
+        <rect x="580" y="140" width="180" height="80" rx="10" fill="#ffeef0" stroke="#e0939e" id="r_spine_box"/>
+        <text x="670" y="190" text-anchor="middle" font-size="22">척수</text>
+
+        <rect x="820" y="140" width="220" height="80" rx="10" fill="#e8ffe8" stroke="#8fcf8a" id="r_muscle_box"/>
+        <text x="930" y="190" text-anchor="middle" font-size="22">근육(반응)</text>
+
+        <!-- arrows -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+          </marker>
+        </defs>
+
+        <line x1="240" y1="180" x2="300" y2="180" stroke="#777" stroke-width="6" marker-end="url(#arrowhead)" id="r_arrow1" class="hidden" />
+        <line x1="520" y1="180" x2="580" y2="180" stroke="#777" stroke-width="6" marker-end="url(#arrowhead)" id="r_arrow2" class="hidden" />
+        <line x1="760" y1="180" x2="820" y2="180" stroke="#777" stroke-width="6" marker-end="url(#arrowhead)" id="r_arrow3" class="hidden" />
+
+        <!-- timing labels -->
+        <text x="150" y="240" text-anchor="middle" font-size="14" fill="#555">0.02초 내에 일어남</text>
+      </svg>
+      <div class="desc">무조건 반사는 감각에서 바로 척수로 전달되어 즉시 근육을 움직이게 해요. 뇌를 거치지 않기 때문에 아주 빨라요.</div>
+    </div>
+
+    <!-- Conscious card -->
+    <div class="card" id="consciousCard">
+      <div class="label">의식적 반응 경로 (느림)</div>
+      <svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" id="consciousSVG">
+        <!-- elements -->
+        <rect x="60" y="40" width="180" height="80" rx="10" fill="#fff6e6" stroke="#d9b86a" id="c_stim_box"/>
+        <text x="150" y="90" text-anchor="middle" font-size="28">자극🔥</text>
+
+        <rect x="300" y="40" width="220" height="80" rx="10" fill="#eef9ff" stroke="#89b6e6" id="c_sens_box"/>
+        <text x="410" y="90" text-anchor="middle" font-size="22">감각신경</text>
+
+        <rect x="470" y="180" width="260" height="110" rx="14" fill="#fff0ff" stroke="#d399d3" id="c_brain_box"/>
+        <text x="600" y="230" text-anchor="middle" font-size="22">대뇌 (생각/판단)</text>
+
+        <rect x="820" y="40" width="220" height="80" rx="10" fill="#e8ffe8" stroke="#8fcf8a" id="c_muscle_box"/>
+        <text x="930" y="90" text-anchor="middle" font-size="22">근육(반응)</text>
+
+        <!-- arrows -->
+        <defs>
+          <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+          </marker>
+        </defs>
+
+        <line x1="240" y1="80" x2="300" y2="80" stroke="#777" stroke-width="6" marker-end="url(#arrowhead2)" id="c_arrow1" class="hidden" />
+        <path d="M 520 80 Q 600 110 600 180" stroke="#777" stroke-width="6" fill="none" marker-end="url(#arrowhead2)" id="c_arrow2" class="hidden" />
+        <path d="M 600 290 Q 700 230 820 120" stroke="#777" stroke-width="6" fill="none" marker-end="url(#arrowhead2)" id="c_arrow3" class="hidden" />
+
+        <!-- timing labels -->
+        <text x="600" y="320" text-anchor="middle" font-size="14" fill="#555">0.2초 이상 걸릴 수 있음</text>
+      </svg>
+      <div class="desc">의식적 반응은 감각이 대뇌로 올라가서 '아, 뜨거워!' 하고 생각한 뒤에 근육에 명령을 내려요. 그래서 시간이 더 걸려요.</div>
+    </div>
+  </div>
+
+  <div class="btns" style="text-align:center;">
+    <button onclick="startAnimation()">시작 ▶</button>
+    <button class="secondary" onclick="resetAll()">초기화 ⟲</button>
+  </div>
+
+  <footer>간단한 교육용 시뮬레이션 — 중학교 3학년 수준으로 설명되어 있습니다.</footer>
+
+  <script>
+    // helper to add glow then remove
+    function pulse(elem, color, duration=700) {
+      elem.classList.remove('hidden');
+      elem.classList.add('glow');
+      elem.style.stroke = color || '#2b7cff';
+      setTimeout(() => {
+        elem.classList.remove('glow');
+        // keep visible but dim
+        elem.style.opacity = 1;
+      }, duration);
+    }
+
+    function startAnimation() {
+      resetAll();
+      // Reflex animation: quick sequence
+      const r1 = document.getElementById('r_arrow1');
+      const r2 = document.getElementById('r_arrow2');
+      const r3 = document.getElementById('r_arrow3');
+
+      // Conscious arrows
+      const c1 = document.getElementById('c_arrow1');
+      const c2 = document.getElementById('c_arrow2');
+      const c3 = document.getElementById('c_arrow3');
+
+      // Reflex steps (fast)
+      setTimeout(()=> pulse(r1, '#ff7f50', 220), 80);   // 자극→감각
+      setTimeout(()=> pulse(r2, '#ff7f50', 220), 160);  // 감각→척수
+      setTimeout(()=> pulse(r3, '#ff7f50', 220), 240);  // 척수→근육
+
+      // Conscious steps (slower - starts slightly later)
+      setTimeout(()=> pulse(c1, '#2b7cff', 500), 400);  // 자극→감각
+      setTimeout(()=> pulse(c2, '#2b7cff', 700), 800);  // 감각→대뇌
+      setTimeout(()=> pulse(c3, '#2b7cff', 900), 1600); // 대뇌→근육 (판단 후)
+    }
+
+    function resetAll() {
+      // hide arrows
+      ['r_arrow1','r_arrow2','r_arrow3','c_arrow1','c_arrow2','c_arrow3'].forEach(id => {
+        const el = document.getElementById(id);
+        el.classList.add('hidden');
+        el.style.opacity = 0.25;
+        el.style.stroke = '#777';
+        el.classList.remove('glow');
+      });
+    }
+
+    // initialize
+    resetAll();
+  </script>
+</body>
+</html>
